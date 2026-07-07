@@ -19,7 +19,7 @@ document.querySelector("#app").innerHTML = `
 
 <main>
     ${Card(`
-        <h2>Measure your typing speed</h2>
+        <h2>Measure your typing speed:</h2>
 
         ${Badge("Beta")}
 

@@ -12,7 +12,7 @@
 
     cursor: pointer;
 
-    transition: var(--transition-fast);
+    transition: var(--transition-normal);
 }
 
 .button:hover {
