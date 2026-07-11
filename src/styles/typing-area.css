@@ -1,0 +1,64 @@
+.typing-area {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.prompt {
+    font-size: 1.5rem;
+    line-height: 2;
+    color: #d1d5db;
+    word-break: break-word;
+}
+
+.cursor {
+    color: #3b82f6;
+    font-weight: bold;
+    animation: blink 1s infinite;
+}
+
+.typing-input {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+}
+
+.typing-input:focus {
+    outline: 2px solid #3b82f6;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .prompt {
+        font-size: 1.2rem;
+        line-height: 1.8;
+    }
+
+    .typing-input {
+        font-size: 0.95rem;
+    }
+}
+
+.character {
+    color: #9ca3af;
+}
+
+.character.correct {
+    color: #22c55e;
+}
+
+.character.incorrect {
+    color: #ef4444;
+}
+
+.character.current {
+    border-left: 2px solid #3b82f6;
+}

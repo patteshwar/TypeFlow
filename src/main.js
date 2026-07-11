@@ -15,6 +15,9 @@ import { Divider } from "./components/divider";
 import { Stats } from "./components/stats";
 import { TypingArea } from "./components/typing-area";
 
+import { initializeInputEngine } from "./services/input-engine";
+
+
 document.querySelector("#app").innerHTML = `
 <header>
     <h1>TypeFlow</h1>
@@ -42,3 +45,4 @@ document.querySelector("#app").innerHTML = `
     <p>© 2026 TypeFlow</p>
 </footer>
 `;
+initializeInputEngine();
