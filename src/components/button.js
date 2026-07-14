@@ -1,6 +1,6 @@
 export function Button(text) {
     return `
-        <button class="button">
+        <button id="start-button" class="button">
             ${text}
         </button>
     `;

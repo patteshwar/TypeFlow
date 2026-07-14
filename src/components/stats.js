@@ -14,7 +14,7 @@ export function Stats() {
 
             <div class="stat">
                 <span class="stat-label">Time</span>
-                <span class="stat-value">60s</span>
+                <span id="time" class="stat-value">60s</span>
             </div>
 
             <div class="stat">

@@ -19,7 +19,8 @@ import { initializeInputEngine } from "./services/input-engine";
 
 
 document.querySelector("#app").innerHTML = `
-<header>
+<header class="site-header">
+    <div class="logo-placeholder"> TF </div>
     <h1>TypeFlow</h1>
 </header>
 
@@ -32,17 +33,24 @@ document.querySelector("#app").innerHTML = `
 
         ${Divider()}
 
-        ${Button("Start Typing")}
+        <center>
+            ${Button("Start Typing")}
+        </center>
+
+        ${Divider()}
+        
+        <h3 class="prompt-title">Prompt</h3>
+
+        ${TypingArea()}
     `)}
 
     ${Card(Stats())}
 
-    ${Card(TypingArea())}
-
 </main>
-        
+
 <footer>
     <p>© 2026 TypeFlow</p>
 </footer>
 `;
+
 initializeInputEngine();

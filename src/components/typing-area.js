@@ -15,9 +15,9 @@ export function TypingArea() {
             <input
                 class="typing-input"
                 type="text"
-                placeholder="Start typing..."
                 autocomplete="off"
                 spellcheck="false"
+                disabled
             />
         </div>
     `;

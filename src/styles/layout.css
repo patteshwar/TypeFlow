@@ -11,10 +11,7 @@ footer {
 }
 
 header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: var(--space-lg);
+    padding: 2rem;
 }
 
 main {
@@ -38,4 +35,32 @@ footer {
     justify-content: flex-start;
     align-items: center;
     padding: var(--space-md) var(--space-lg);
+}
+
+
+.site-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    width: min(900px, 100%);
+    margin: 0 auto;
+}
+
+
+.logo-placeholder {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 12px;
+
+    background: #2c2c2c;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
 }
