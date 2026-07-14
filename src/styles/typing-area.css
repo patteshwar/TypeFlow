@@ -52,13 +52,13 @@
 }
 
 .character.correct {
-    color: #22c55e;
+    color: #5ae68e;
 }
 
 .character.incorrect {
-    color: #ef4444;
+    color: #e96363;
 }
 
 .character.current {
-    border-left: 2px solid #3b82f6;
+    border-left: 2px solid #ae9e4f;
 }

@@ -29,3 +29,6 @@ export function resetTimer(onTick) {
 export function getTimeLeft() {
     return timeLeft;
 }
+export function getElapsedTime() {
+    return 60 - timeLeft;
+}
