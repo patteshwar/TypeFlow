@@ -5,7 +5,8 @@ import {
     updateAverageWPM,
     updatePeakWPM,
     resetWPM,
-} from "./wpm.js";;
+} from "./wpm.js";
+import { calculateAccuracy } from "./accuracy.js";
 
 export function initializeInputEngine() {
     const input = document.querySelector(".typing-input");
@@ -18,23 +19,20 @@ if (!input || !typingArea || !timeDisplay) return;
     // Show cursor at the first character
     characters[0].classList.add("current");
 
-    // Keep the hidden input focused while typing
-    typingArea.addEventListener("click", () => {
-        if (!input.disabled) {
-            input.focus();
-        }
-    });
 
 typingArea.addEventListener("click", () => {
 
+    // Already typing → just refocus
     if (!input.disabled) {
         input.focus();
         return;
     }
 
+    // Enable typing
     input.disabled = false;
     input.value = "";
 
+    // Reset prompt styling
     characters.forEach(character => {
         character.classList.remove(
             "correct",
@@ -45,6 +43,7 @@ typingArea.addEventListener("click", () => {
 
     characters[0].classList.add("current");
 
+    // Reset stats
     resetTimer((timeLeft) => {
         timeDisplay.textContent = `${timeLeft}s`;
     });
@@ -54,6 +53,10 @@ typingArea.addEventListener("click", () => {
     document.querySelector("#current-wpm").textContent = 0;
     document.querySelector("#average-wpm").textContent = 0;
     document.querySelector("#peak-wpm").textContent = 0;
+    document.querySelector("#accuracy").textContent = "100%";
+    
+    document.querySelector("#characters").textContent =
+    `0/${prompt.length}`;
 
     input.focus();
 
@@ -71,6 +74,8 @@ typingArea.addEventListener("click", () => {
     input.addEventListener("input", (event) => {
     const typed = event.target.value;
 
+    document.querySelector("#characters").textContent = `${typed.length}/${prompt.length}`;
+
     // Clear previous states
     characters.forEach((character) => {
         character.classList.remove("correct", "incorrect", "current");
@@ -85,9 +90,11 @@ typingArea.addEventListener("click", () => {
         }
     });
 
-    // Calculate current WPM
-    const correctCharacters =
-        document.querySelectorAll(".character.correct").length;
+    const correctCharacters = document.querySelectorAll(".character.correct").length;
+    const incorrectCharacters = document.querySelectorAll(".character.incorrect").length;
+    
+    const accuracy = calculateAccuracy(correctCharacters, incorrectCharacters);
+    document.querySelector("#accuracy").textContent = `${accuracy}%`;
 
     const elapsedTime = getElapsedTime();
 
@@ -102,7 +109,6 @@ typingArea.addEventListener("click", () => {
         document.querySelector("#current-wpm").textContent = currentWPM;
         document.querySelector("#average-wpm").textContent = averageWPM;
         document.querySelector("#peak-wpm").textContent = peakWPM;
-
     // Move cursor
     if (typed.length < characters.length) {
         characters[typed.length].classList.add("current");
