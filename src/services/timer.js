@@ -32,3 +32,14 @@ export function getTimeLeft() {
 export function getElapsedTime() {
     return 60 - timeLeft;
 }
+
+export function pauseTimer() {
+    if (timerId) {
+        clearInterval(timerId);
+        timerId = null;
+    }
+}
+
+export function resumeTimer(onTick, onFinish) {
+    startTimer(onTick, onFinish);
+}

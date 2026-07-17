@@ -1,11 +1,21 @@
 import { prompt } from "../utils/prompts.js";
-import { startTimer, resetTimer, getElapsedTime } from "./timer.js";    
+
+import { 
+    startTimer, 
+    resetTimer, 
+    getElapsedTime,
+    pauseTimer,
+    resumeTimer,
+    getTimeLeft,
+} from "./timer.js";
+
 import {
     calculateWPM,
     updateAverageWPM,
     updatePeakWPM,
     resetWPM,
 } from "./wpm.js";
+
 import { calculateAccuracy } from "./accuracy.js";
 
 export function initializeInputEngine() {
@@ -14,7 +24,9 @@ export function initializeInputEngine() {
     const typingArea = document.querySelector(".typing-area");
     const timeDisplay = document.querySelector("#time");
 
-if (!input || !typingArea || !timeDisplay) return;
+    let idleTimeout = null;
+
+    if (!input || !typingArea || !timeDisplay) return;
 
     // Show cursor at the first character
     characters[0].classList.add("current");
@@ -74,7 +86,14 @@ typingArea.addEventListener("click", () => {
     input.addEventListener("input", (event) => {
     const typed = event.target.value;
 
-    document.querySelector("#characters").textContent = `${typed.length}/${prompt.length}`;
+    const typedLength = Math.min(typed.length, characters.length);
+
+    if (typedLength > characters.length) {
+        input.value = typed.slice(0, characters.length);
+        return;
+    }
+
+    document.querySelector("#characters").textContent = `${typedLength}/${prompt.length}`;
 
     // Clear previous states
     characters.forEach((character) => {
@@ -109,9 +128,33 @@ typingArea.addEventListener("click", () => {
         document.querySelector("#current-wpm").textContent = currentWPM;
         document.querySelector("#average-wpm").textContent = averageWPM;
         document.querySelector("#peak-wpm").textContent = peakWPM;
+
     // Move cursor
     if (typed.length < characters.length) {
         characters[typed.length].classList.add("current");
     }
+
+    if (typed.length === characters.length) {
+        pauseTimer();
+        
+        document.querySelector("#time").textContent = `${getTimeLeft()}s`;
+        input.disabled = true;
+    }
+
+    clearTimeout(idleTimeout);
+
+    resumeTimer(
+        (timeLeft) => {
+            timeDisplay.textContent = `${timeLeft}s`;
+        },
+        () => {
+            input.disabled = true;
+        }
+    );
+
+    idleTimeout = setTimeout(() => {
+        pauseTimer();
+    }, 2000);
+
     });
 }
