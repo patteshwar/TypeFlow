@@ -13,8 +13,9 @@ import { Divider } from "./components/divider";
 import { Stats } from "./components/stats";
 import { TypingArea } from "./components/typing-area";
 
-import { initializeInputEngine } from "./services/input-engine";
+import { Keyboard } from "./components/keyboard/keyboard";
 
+import { initializeInputEngine } from "./services/input-engine";
 
 document.querySelector("#app").innerHTML = `
 <header>
@@ -48,11 +49,21 @@ document.querySelector("#app").innerHTML = `
         ${Stats()}
     </div>
 
+    <div class="keyboard-section"></div>
+
 </main>
 
 <footer>
     <p>© 2026 TypeFlow</p>
 </footer>
 `;
+
+const keyboardContainer = document.querySelector(".keyboard-section");
+
+const keyboard = new Keyboard({
+    layout: "ansi"
+});
+
+keyboardContainer.appendChild(keyboard.render());
 
 initializeInputEngine();

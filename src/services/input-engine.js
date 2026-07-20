@@ -18,6 +18,7 @@ import {
 
 import { calculateAccuracy } from "./accuracy.js";
 
+
 export function initializeInputEngine() {
     const input = document.querySelector(".typing-input");
     const characters = document.querySelectorAll(".character");
