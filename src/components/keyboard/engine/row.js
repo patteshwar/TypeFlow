@@ -1,4 +1,5 @@
 import { createKey } from "./key.js";
+import { createSpacer } from "./spacer.js";
 
 export function createRow(rowData) {
 
@@ -6,8 +7,14 @@ export function createRow(rowData) {
 
     row.className = "keyboard-row";
 
-    rowData.forEach(keyData => {
-        row.appendChild(createKey(keyData));
+    rowData.forEach(item => {
+
+        if ("spacer" in item) {
+            row.appendChild(createSpacer(item.spacer));
+        } else {
+            row.appendChild(createKey(item));
+        }
+
     });
 
     return row;

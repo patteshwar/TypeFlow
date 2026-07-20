@@ -31,9 +31,14 @@
 
     height: var(--key-unit);
 
+    position: relative;
+
     display: flex;
+    
     justify-content: center;
     align-items: center;
+
+    overflow: hidden;   
 
     box-sizing: border-box;
 
@@ -51,6 +56,36 @@
     box-shadow:
         inset 0 -2px 0 rgba(0,0,0,.35),
         0 3px 8px rgba(0,0,0,.25);
+}
+
+
+.key-primary {
+
+    position: absolute;
+
+    bottom: 7px;
+    left: 8px;
+
+    font-size: .95rem;
+    font-weight: 600;
+
+}
+
+.key-secondary {
+
+    position: absolute;
+
+    top: 6px;
+    left: 8px;
+
+    font-size: .65rem;
+
+    opacity: .75;
+
+}
+
+.keyboard-spacer {
+    flex: 0 0 calc(var(--units) * var(--key-unit));
 }
 
 .key:hover {
