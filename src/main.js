@@ -36,20 +36,29 @@ document.querySelector("#app").innerHTML = `
 
 <main>
 
-    <div class="hero">
+    <div class="content">
 
-        <h2>Measure your typing speed:</h2>
+        <div class="hero">
 
-        ${TypingArea()}
+            <h2>Measure your typing speed:</h2>
 
-        ${Divider()}
+            ${TypingArea()}
+
+            ${Divider()}
+
+        </div>
+
+        <div class="stats-section">
+            ${Stats()}
+        </div>
+
     </div>
 
-    <div class="stats-section">
-        ${Stats()}
-    </div>
+    <section class="keyboard-section">
 
-    <div class="keyboard-section"></div>
+        <div class="keyboard-wrapper"></div>
+
+    </section>
 
 </main>
 
@@ -58,7 +67,7 @@ document.querySelector("#app").innerHTML = `
 </footer>
 `;
 
-const keyboardContainer = document.querySelector(".keyboard-section");
+const keyboardContainer = document.querySelector(".keyboard-wrapper");
 
 const keyboard = new Keyboard({
     layout: "ansi"

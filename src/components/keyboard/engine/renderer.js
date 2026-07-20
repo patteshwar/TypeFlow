@@ -4,15 +4,19 @@ export class Renderer {
 
     render(layout) {
 
-        const keyboard = document.createElement("div");
+    const keyboard = document.createElement("div");
 
-        keyboard.className = "keyboard";
+    keyboard.className = "keyboard";
 
-        layout.forEach(rowData => {
-            keyboard.appendChild(createRow(rowData));
-        });
+    layout.rows.forEach((rowData) => {
 
-        return keyboard;
-    }
+        const row = createRow(rowData);
+
+        keyboard.appendChild(row);
+
+    });
+
+    return keyboard;
+}
 
 }
